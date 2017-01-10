@@ -13,15 +13,30 @@ public class ShoppingCartTest {
 	Product medium = new Product("UNLI_2GB", "MEDIUM", 1500.00);
 	Product large = new Product("UNLI_5GB", "LARGE", 3000.00);
 	Product add = new Product("1GB_ADDTL", "1GB", 500.00);
+
+	Promotionals promo1 = new Promotionals(small, 3, 2);
+	Promotionals promo2 = new Promotionals(large, 5, small, 1);
+	Promotionals promo3 = new Promotionals(medium, 1, add, 1);
 	
 	
-	
-	public void checkNoPromo () {
+	@Test
+	public void testNoPromo () {
+		
+		shoppingCart.addProduct(small);
+		shoppingCart.addProduct(small);
+		shoppingCart.addProduct(large);
+		
+		promo1.check(shoppingCart);
+		promo2.check(shoppingCart);
+		promo3.check(shoppingCart);
+		shoppingCart.checkout();
+		
+		assertEquals(5000.00, shoppingCart.getTotal(), 0);
 		
 	}
 	
 	@Test
-	public void checkPromo1 () {
+	public void testPromo1 () {
 		
 		Promotionals promo1 = new Promotionals(small, 3, 2);
 		
@@ -31,6 +46,8 @@ public class ShoppingCartTest {
 		shoppingCart.addProduct(small);
 		
 		promo1.check(shoppingCart);
+		promo2.check(shoppingCart);
+		promo3.check(shoppingCart);
 		shoppingCart.checkout();
 		
 		assertEquals(2000.00, shoppingCart.getTotal(), 0);
@@ -44,7 +61,9 @@ public class ShoppingCartTest {
 		for (int i = 0; i < 5; i++)
 			shoppingCart.addProduct(large);
 		
+		promo1.check(shoppingCart);
 		promo2.check(shoppingCart);
+		promo3.check(shoppingCart);
 		shoppingCart.checkout();
 
 		assertTrue(shoppingCart.hasProduct(small));
@@ -58,6 +77,8 @@ public class ShoppingCartTest {
 		
 		shoppingCart.addProduct(medium);
 		
+		promo1.check(shoppingCart);
+		promo2.check(shoppingCart);
 		promo3.check(shoppingCart);
 		shoppingCart.checkout();
 		
