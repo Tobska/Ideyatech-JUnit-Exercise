@@ -9,15 +9,28 @@ public class ShoppingCartTest {
 
 	ShoppingCart shoppingCart = new ShoppingCart();
 
-	Product small = new Product("UNLI_1GB", "SMALL", 1000.00);
-	Product medium = new Product("UNLI_2GB", "MEDIUM", 1500.00);
-	Product large = new Product("UNLI_5GB", "LARGE", 3000.00);
-	Product add = new Product("1GB_ADDTL", "1GB", 500.00);
+	Product small;
+	Product medium;
+	Product large;
+	Product add;
 
-	Promotionals promo1 = new Promotionals(small, 3, 2);
-	Promotionals promo2 = new Promotionals(large, 5, small, 1);
-	Promotionals promo3 = new Promotionals(medium, 1, add, 1);
+	Promotionals promo1;
+	Promotionals promo2;
+	Promotionals promo3;
 	
+	@Before
+	public void init () {
+		shoppingCart = new ShoppingCart();
+
+		small = new Product("UNLI_1GB", "SMALL", 1000.00);
+		medium = new Product("UNLI_2GB", "MEDIUM", 1500.00);
+		large = new Product("UNLI_5GB", "LARGE", 3000.00);
+		add = new Product("1GB_ADDTL", "1GB", 500.00);
+
+		promo1 = new Promotionals(small, 3, 2);
+		promo2 = new Promotionals(large, 5, small, 1);
+		promo3 = new Promotionals(medium, 1, add, 1);
+	}
 	
 	@Test
 	public void testNoPromo () {
