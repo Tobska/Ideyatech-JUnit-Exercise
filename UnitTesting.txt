@@ -1,0 +1,13 @@
+Unit Testing
+-process in w/c classes are scrutinized for proper orientation
+
+Code coverage
+-percentage of code being tested
+-80% is already acceptable (logic part only, not including imports and if-else statements)
+
+
+-highly coupled, loosely coupled
+remember cohesion and coupling
+
+//assertEquals uses the equals() function of the given class
+//assertSame checks the memory used to compare the two objects
